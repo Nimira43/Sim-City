@@ -1,5 +1,11 @@
-export default function Home() {
+import React from 'react'
+
+const Dashboard = () => {
   return (
-    <h1>TekTik</h1>
-  );
+    <div>
+      Dashboard
+    </div>
+  )
 }
+
+export default Dashboard
