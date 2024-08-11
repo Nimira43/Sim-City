@@ -14,7 +14,13 @@ const ToggleMode = () => {
   }, [])
 
   if (!mounted) {
-    return null
+    return (
+      <Button
+        variant='outline'
+        size='icon'
+        disabled={true}
+      ></Button>
+    )
   }
 
   const dark = theme === 'dark'
