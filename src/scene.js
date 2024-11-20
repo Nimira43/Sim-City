@@ -1,4 +1,5 @@
-import * as THREE from 'hhtps::unpkg.com/three/build/three.modules.js'
+import * as THREE from 'https://unpkg.com/three/build/three.module.js'
+
 export function createScene() {
   const gameWindow = document.getElementById('render-target')
   const scene = new THREE.Scene()
@@ -11,11 +12,11 @@ export function createScene() {
     100
   )
 
-  const renderer = new THREE.WebGL.Renderer()
-  renderer = setSize(gameWindow.offsetWidth, gameWindow.offsetHeight)
+  const renderer = new THREE.WebGLRenderer()
+  renderer.setSize(gameWindow.offsetWidth, gameWindow.offsetHeight)
   gameWindow.appendChild(renderer.domElement)
 
-  const geometry = new THREE.BoxGeomtery(1, 1, 1)
+  const geometry = new THREE.BoxGeometry(1, 1, 1)
   const material = new THREE.MeshBasicMaterial({ color: 0xff4500})
   const mesh = new THREE.Mesh(geometry, material)
   scene.add(mesh)
