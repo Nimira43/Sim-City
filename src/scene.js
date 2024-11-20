@@ -1,5 +1,3 @@
-// import * as THREE from 'https://unpkg.com/three/build/three.module.js'
-
 import * as THREE from 'three'
 
 export function createScene() {
@@ -38,9 +36,24 @@ export function createScene() {
     renderer.setAnimationLoop(null)
   }
 
+  function onMouseDown() {
+    console.log('mouse down')
+  }
+
+  function onMouseUp() {
+    console.log('mouse up')
+  }
+
+  function onMouseMove() {
+    console.log('mouse move')
+  }
+
   return {
     start,
-    stop
+    stop,
+    onMouseDown,
+    onMouseUp,
+    onMouseMove
   }
 }
 
