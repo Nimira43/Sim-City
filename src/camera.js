@@ -63,7 +63,7 @@ export function createCamera(gameWindow) {
     }
     
     if (isRightMouseDown) {
-      cameraRadius += (event.clientY - prevMouseX) * 0.02
+      cameraRadius += (event.clientY - prevMouseY) * 0.02
       cameraElevation = Math.min(MAX_CAMERA_RADIUS, Math.max(MIN_CAMERA_RADIUS, cameraElevation))
       updateCameraPosition()
     }
