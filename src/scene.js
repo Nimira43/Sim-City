@@ -11,7 +11,12 @@ export function createScene() {
     0.1,
     100
   )
-  camera.position.z = 5
+  let cameraRadius = 20
+  let cameraAzimuth = 0
+  let cameraElevation = 0
+  let isMouseDown = false
+  let prevMouseX = 0
+  let prevMouseY = 0
 
   const renderer = new THREE.WebGLRenderer()
   renderer.setSize(gameWindow.offsetWidth, gameWindow.offsetHeight)
@@ -37,15 +42,19 @@ export function createScene() {
   }
 
   function onMouseDown() {
-    console.log('mouse down')
+    isMouseDown = true
   }
 
   function onMouseUp() {
-    console.log('mouse up')
+    isMouseUp = false
   }
 
-  function onMouseMove() {
-    console.log('mouse move')
+  function onMouseMove(event) {
+    if (isMouseDown) {
+      cameraAzimuth += -((event.clientX - prevMouseX) * 0.5)
+      cameraElevation += ((event.clientY - prevMouseY) * 0.5)
+      cameraElevation = Math.min(90, Math.max(0, cameraElevation))
+    }
   }
 
   return {
