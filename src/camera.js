@@ -1,12 +1,14 @@
 import * as THREE from 'three'
 
 export function createCamera(gameWindow) {
+  const DEG2RAD = Math.PI / 180
   const LEFT_MOUSE_BUTTON = 0
   const MIDDLE_MOUSE_BUTTON = 1
   const RIGHT_MOUSE_BUTTON = 2
   const MIN_CAMERA_RADIUS = 2
   const MAX_CAMERA_RADIUS = 10
-  
+  const Y_AXIS = new THREE.Vector3(0, 1, 0)
+ 
   const camera = new THREE.PerspectiveCamera(
     75,
     gameWindow.offsetWidth / gameWindow.offsetHeight,
@@ -59,9 +61,8 @@ export function createCamera(gameWindow) {
     }
     
     if (isMiddleMouseDown) {
-      cameraAzimuth += -(deltaX * 0.5)
-      cameraElevation += (deltaY * 0.5)
-      cameraElevation = Math.min(90, Math.max(0, cameraElevation))
+      const forward = new THREE.Vector3(0, 0, 1).applyAxisAngle(Y_AXIS, cameraAzimuth * DEG2RAD) 
+      const left = new THREE.Vector3(1, 0, 0).applyAxisAngle(Y_AXIS, cameraAzimuth * DEG2RAD) 
       updateCameraPosition()
     }
     
@@ -75,11 +76,11 @@ export function createCamera(gameWindow) {
   }
 
   function updateCameraPosition() {
-    camera.position.x = cameraRadius * Math.sin(cameraAzimuth * Math.PI / 180) * Math.cos(cameraElevation * Math.PI / 180)
+    camera.position.x = cameraRadius * Math.sin(cameraAzimuth * DEG2RAD) * Math.cos(cameraElevation * DEG2RAD)
     
-    camera.position.y = cameraRadius * Math.sin(cameraElevation * Math.PI / 180)
+    camera.position.y = cameraRadius * Math.sin(cameraElevation * DEG2RAD)
     
-    camera.position.z = cameraRadius * Math.cos(cameraAzimuth * Math.PI / 180) * Math.cos(cameraElevation * Math.PI / 180)
+    camera.position.z = cameraRadius * Math.cos(cameraAzimuth * DEG2RAD) * Math.cos(cameraElevation * DEG2RAD)
 
     camera.lookAt(0, 0, 0)
     camera.updateMatrix()
