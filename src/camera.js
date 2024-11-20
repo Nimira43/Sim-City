@@ -4,6 +4,9 @@ export function createCamera(gameWindow) {
   const LEFT_MOUSE_BUTTON = 0
   const MIDDLE_MOUSE_BUTTON = 1
   const RIGHT_MOUSE_BUTTON = 2
+  const MIN_CAMERA_RADIUS = 2
+  const MAX_CAMERA_RADIUS = 10
+  
   const camera = new THREE.PerspectiveCamera(
     75,
     gameWindow.offsetWidth / gameWindow.offsetHeight,
@@ -60,9 +63,8 @@ export function createCamera(gameWindow) {
     }
     
     if (isRightMouseDown) {
-      cameraAzimuth += -((event.clientX - prevMouseX) * 0.5)
-      cameraElevation += ((event.clientY - prevMouseY) * 0.5)
-      cameraElevation = Math.min(90, Math.max(0, cameraElevation))
+      cameraRadius += (event.clientY - prevMouseX) * 0.02
+      cameraElevation = Math.min(MAX_CAMERA_RADIUS, Math.max(MIN_CAMERA_RADIUS, cameraElevation))
       updateCameraPosition()
     }
     prevMouseX = event.clientX
