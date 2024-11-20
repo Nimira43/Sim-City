@@ -5,18 +5,7 @@ export function createScene() {
   const scene = new THREE.Scene()
   scene.background = new THREE.Color(0x999999)
 
-  const camera = new THREE.PerspectiveCamera(
-    75,
-    gameWindow.offsetWidth / gameWindow.offsetHeight,
-    0.1,
-    100
-  )
-  let cameraRadius = 20
-  let cameraAzimuth = 0
-  let cameraElevation = 0
-  let isMouseDown = false
-  let prevMouseX = 0
-  let prevMouseY = 0
+   
 
   const renderer = new THREE.WebGLRenderer()
   renderer.setSize(gameWindow.offsetWidth, gameWindow.offsetHeight)
