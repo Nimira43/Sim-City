@@ -48,22 +48,25 @@ export function createCamera(gameWindow) {
   }
 
   function onMouseMove(event) {
+    const deltaX = (event.clientX - prevMouseX)
+    const deltaY = (event.clientY - prevMouseY)
+
     if (isLeftMouseDown) {
-      cameraAzimuth += -((event.clientX - prevMouseX) * 0.5)
-      cameraElevation += ((event.clientY - prevMouseY) * 0.5)
+      cameraAzimuth += -(deltaX * 0.5)
+      cameraElevation += (deltaY * 0.5)
       cameraElevation = Math.min(90, Math.max(0, cameraElevation))
       updateCameraPosition()
     }
     
     if (isMiddleMouseDown) {
-      cameraAzimuth += -((event.clientX - prevMouseX) * 0.5)
-      cameraElevation += ((event.clientY - prevMouseY) * 0.5)
+      cameraAzimuth += -(deltaX * 0.5)
+      cameraElevation += (deltaY * 0.5)
       cameraElevation = Math.min(90, Math.max(0, cameraElevation))
       updateCameraPosition()
     }
     
     if (isRightMouseDown) {
-      cameraRadius += (event.clientY - prevMouseY) * 0.02
+      cameraRadius += deltaY * 0.02
       cameraElevation = Math.min(MAX_CAMERA_RADIUS, Math.max(MIN_CAMERA_RADIUS, cameraElevation))
       updateCameraPosition()
     }
