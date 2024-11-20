@@ -1,11 +1,12 @@
 import * as THREE from 'three'
+import { createCamera } from './camera.js'
 
 export function createScene() {
   const gameWindow = document.getElementById('render-target')
   const scene = new THREE.Scene()
   scene.background = new THREE.Color(0x999999)
 
-   
+  const camera = createCamera(gameWindow)
 
   const renderer = new THREE.WebGLRenderer()
   renderer.setSize(gameWindow.offsetWidth, gameWindow.offsetHeight)
@@ -17,9 +18,7 @@ export function createScene() {
   scene.add(mesh)
 
   function draw() {
-    mesh.rotation.x += 0.01
-    mesh.rotation.y += 0.01
-    renderer.render(scene, camera)
+    renderer.render(scene, camera.camera)
   }
   
   function start() {
@@ -31,24 +30,16 @@ export function createScene() {
   }
 
   function onMouseDown() {
-    isMouseDown = true
+    camera.onMouseDown()
   }
 
   function onMouseUp() {
-    isMouseUp = false
+    camera.onMouseUp()
   }
 
   function onMouseMove(event) {
-    if (isMouseDown) {
-      cameraAzimuth += -((event.clientX - prevMouseX) * 0.5)
-      cameraElevation += ((event.clientY - prevMouseY) * 0.5)
-      cameraElevation = Math.min(90, Math.max(0, cameraElevation))
-      updateCameraPosition()
-    }
-    prevMouseX = event.clientX
-    prevMouseY = event.clientY
+    camera.onMouseMove(event)
   }
-
   
   return {
     start,

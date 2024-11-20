@@ -45,8 +45,10 @@ export function createCamera(gameWindow) {
     camera.updateMatrix()
   }
 
-
   return {
-    
+    camera,
+    onMouseDown,
+    onMouseUp,
+    onMouseMove
   }
 }
