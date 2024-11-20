@@ -14,4 +14,17 @@ export function createScene() {
   const renderer = new THREE.WebGL.Renderer()
   renderer = setSize(gameWindow.offsetWidth, gameWindow.offsetHeight)
   gameWindow.appendChild(renderer.domElement)
+
+  function draw() {
+    renderer.render(scene, camera)
+  }
+  
+  function start() {
+    renderer.setAnimationLoop(draw)
+  }
+
+  function stop() {
+    renderer.setAnimationLoop(null)
+  }
 }
+
