@@ -19,4 +19,14 @@ export function createScene() {
   function start() {
     renderer.setAnimationLoop(draw)
   }
+  
+  function stop() {
+    renderer.setAnimationLoop(null)
+  }
+
+  return {
+    start,
+    stop
+  }
+
 }
