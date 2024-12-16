@@ -1,4 +1,4 @@
-import * as THREE from 'https://unpkg.com/three/build.module.js'
+import * as THREE from 'https://unpkg.com/three/build.three.module.js'
 
 export function createScene() {
   const gameWindow = document.getElementById('render-target')
