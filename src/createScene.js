@@ -16,6 +16,8 @@ export function createScene() {
   let meshes = []  
   
   function initialise(city) {
+    scene.clear()
+    meshes = []
     for (let x = 0; x < city.size; x++) {
       const column = []
       for (let y = 0; y < city.size; y++) {
@@ -23,17 +25,12 @@ export function createScene() {
         const material = new THREE.MeshBasicMaterial({ color: 0x009a17 })
         const mesh = new THREE.Mesh(geometry, material)
         mesh.position.set(x, 0, y) 
-        scene.add(mesh); column.push(mesh)
+        scene.add(mesh) 
+        column.push(mesh)
       }
       meshes.push(column)
     }
   }  
-
-  const city = { 
-    size: 10 
-  }
-
-  initialise(city)
 
   function draw() {
     renderer.render(scene, camera.camera)
@@ -60,6 +57,7 @@ export function createScene() {
   }
 
   return {
+    initialise,
     start,
     stop,
     onMouseDown,
