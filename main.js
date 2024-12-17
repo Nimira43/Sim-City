@@ -1,4 +1,4 @@
-import { createScene } from './createScene.js'
+import { createScene } from './src/createScene.js'
 
 window.onload = () => {
   console.log('Window loaded') // Log when the window is loaded
