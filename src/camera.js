@@ -67,8 +67,8 @@ export function createCamera(gameWindow) {
 
     // Panning of the camera
     if (isMiddleMouseDown) {
-      const forward = new THREE.Vector3(0, 0, 1).applyAxisAngle(Y_AXIS, cameraAzimuth * Math.PI / 180)
-      const left = new THREE.Vector3(1, 0, 0).applyAxisAngle(Y_AXIS, cameraAzimuth * Math.PI / 180)
+      const forward = new THREE.Vector3(0, 0, 1).applyAxisAngle(Y_AXIS, cameraAzimuth * DEG2RAD)
+      const left = new THREE.Vector3(1, 0, 0).applyAxisAngle(Y_AXIS, cameraAzimuth * DEG2RAD)
     }
 
     // Zoom of the camera
@@ -83,9 +83,9 @@ export function createCamera(gameWindow) {
   }
 
   function updateCameraPosition() {
-    camera.position.x = cameraRadius * Math.sin(cameraAzimuth * Math.PI / 180) * Math.cos(cameraElevation * Math.PI / 180)
-    camera.position.y = cameraRadius * Math.sin(cameraElevation * Math.PI / 180)
-    camera.position.z = cameraRadius * Math.cos(cameraAzimuth * Math.PI / 180) * Math.cos(cameraElevation * Math.PI / 180)
+    camera.position.x = cameraRadius * Math.sin(cameraAzimuth * DEG2RAD) * Math.cos(cameraElevation * DEG2RAD)
+    camera.position.y = cameraRadius * Math.sin(cameraElevation * DEG2RAD)
+    camera.position.z = cameraRadius * Math.cos(cameraAzimuth * DEG2RAD) * Math.cos(cameraElevation * DEG2RAD)
     camera.lookAt(0, 0, 0)
     camera.updateMatrix()
   }
