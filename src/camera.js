@@ -8,6 +8,8 @@ export function createCamera(gameWindow) {
   const RIGHT_MOUSE_BUTTON = 2
   const MIN_CAMERA_RADIUS = 2
   const MAX_CAMERA_RADIUS = 10
+  const MIN_CAMERA_ELEVATION = 0 // 30
+  const MAX_CAMERA_ELEVATION = 90
   const ROTATION_SENSITIVITY = 0.5
   const ZOOM_SENSITIVITY = 0.02
   const PAN_SENSITIVITY = -0.01
@@ -66,7 +68,7 @@ export function createCamera(gameWindow) {
     if (isLeftMouseDown) {
       cameraAzimuth += -(deltaX * ROTATION_SENSITIVITY)
       cameraElevation += (deltaY * ROTATION_SENSITIVITY)
-      cameraElevation = Math.min(90, Math.max(0, cameraElevation))
+      cameraElevation = Math.min(MAX_CAMERA_ELEVATION, Math.max(MIN_CAMERA_ELEVATION, cameraElevation))
       updateCameraPosition()
     }
 
