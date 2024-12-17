@@ -22,7 +22,7 @@ export function createScene() {
       const column = []
       for (let y = 0; y < city.size; y++) {
         const geometry = new THREE.BoxGeometry(1, 1, 1)
-        const material = new THREE.MeshBasicMaterial({ color: 0x009a17 })
+        const material = new THREE.MeshLambertMaterial({ color: 0x009a17 })
         const mesh = new THREE.Mesh(geometry, material)
         mesh.position.set(x, 0, y) 
         scene.add(mesh) 
@@ -30,7 +30,21 @@ export function createScene() {
       }
       meshes.push(column)
     }
+    setupLights()
   }  
+
+  function setupLights() {
+    const lights = [
+      new THREE.AmbientLight(0xffffff, 0.2),
+      new THREE.DirectionalLight(0xffffff, 0.3),
+      new THREE.DirectionalLight(0xffffff, 0.3),
+      new THREE.DirectionalLight(0xffffff, 0.3)
+    ]
+    lights[1].position.set(0, 1, 0)
+    lights[2].position.set(1, 1, 0)
+    lights[3].position.set(0, 1, 1)
+    scene.add(...lights)
+  }
 
   function draw() {
     renderer.render(scene, camera.camera)
