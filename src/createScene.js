@@ -5,7 +5,7 @@ export function createScene() {
   const gameWindow = document.getElementById('render-target')
    
   const scene = new THREE.Scene()
-  scene.background = new THREE.Color(0x777777)
+  scene.background = new THREE.Color(0x00b5e2)
 
   const camera = createCamera(gameWindow)
   
@@ -20,9 +20,9 @@ export function createScene() {
       const column = []
       for (let y = 0; y < city.size; y++) {
         const geometry = new THREE.BoxGeometry(1, 1, 1)
-        const material = new THREE.MeshBasicMaterial({ color: 0xff0000 })
+        const material = new THREE.MeshBasicMaterial({ color: 0x009a17 })
         const mesh = new THREE.Mesh(geometry, material)
-        mesh.position.set(x, y, 0) 
+        mesh.position.set(x, 0, y) 
         scene.add(mesh); column.push(mesh)
       }
       meshes.push(column)
