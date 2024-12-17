@@ -8,10 +8,16 @@ export function createCamera(gameWindow) {
     1000
   )
 
+  const LEFT_MOUSE_BUTTON = 0
+  const RIGHT_MOUSE_BUTTON = 0
+  const MIDDLE_MOUSE_BUTTON = 0
+
   let cameraRadius = 4
   let cameraAzimuth = 0
   let cameraElevation = 0
-  let isMouseDown = false
+  let isLeftMouseDown = false
+  let isRightMouseDown = false
+  let isMiddleMouseDown = false
   let prevMouseX = 0
   let prevMouseY = 0
   updateCameraPosition()
