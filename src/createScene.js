@@ -18,6 +18,7 @@ export function createScene() {
   const mesh = new THREE.Mesh(geometry, material)
   scene.add(mesh)
 
+
   function draw() {
     renderer.render(scene, camera.camera)
   }
