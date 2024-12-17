@@ -2,11 +2,13 @@ import * as THREE from 'three'
 
 export function createCamera(gameWindow) {
   
+  const DEG2RAD = Math.PI / 180
   const LEFT_MOUSE_BUTTON = 0
   const MIDDLE_MOUSE_BUTTON = 1
   const RIGHT_MOUSE_BUTTON = 2
   const MIN_CAMERA_RADIUS = 2
   const MAX_CAMERA_RADIUS = 10
+  const Y_AXIS = new THREE.Vector3(0, 1, 0)
 
   const camera = new THREE.PerspectiveCamera(
     75, 
@@ -65,10 +67,8 @@ export function createCamera(gameWindow) {
 
     // Panning of the camera
     if (isMiddleMouseDown) {
-      // cameraAzimuth += -((event.clientX - prevMouseX) * 0.5)
-      // cameraElevation += ((event.clientY - prevMouseY) * 0.5)
-      // cameraElevation = Math.min(90, Math.max(0, cameraElevation))
-      // updateCameraPosition()
+      const forward = new THREE.Vector3(0, 0, 1).applyAxisAngle(Y_AXIS, cameraAzimuth * Math.PI / 180)
+      const left = new THREE.Vector3(1, 0, 0).applyAxisAngle(Y_AXIS, cameraAzimuth * Math.PI / 180)
     }
 
     // Zoom of the camera
