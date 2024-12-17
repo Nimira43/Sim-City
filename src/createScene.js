@@ -61,6 +61,14 @@ export function createScene() {
     prevMouseY = event.clientY
   }
 
+  function updateCameraPosition() {
+    camera.position.x = cameraRadius * Math.sin(cameraAzimuth * Math.PI / 180) * Math.cos(cameraElevation * Math.PI / 180)
+    camera.position.y = cameraRadius * Math.sin(cameraElevation * Math.PI / 180)
+    camera.position.z = cameraRadius * Math.cos(cameraAzimuth * Math.PI / 180) * Math.cos(cameraElevation * Math.PI / 180)
+    camera.lookAt(0, 0, 0)
+    camera.updateMatrix()
+  }
+
   return {
     start,
     stop,
