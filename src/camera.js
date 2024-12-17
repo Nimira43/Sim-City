@@ -64,8 +64,8 @@ export function createCamera(gameWindow) {
 
     // Rotation of camera
     if (isLeftMouseDown) {
-      cameraAzimuth += -(deltaX * 0.5)
-      cameraElevation += (deltaY * 0.5)
+      cameraAzimuth += -(deltaX * ROTATION_SENSITIVITY)
+      cameraElevation += (deltaY * ROTATION_SENSITIVITY)
       cameraElevation = Math.min(90, Math.max(0, cameraElevation))
       updateCameraPosition()
     }
@@ -74,14 +74,14 @@ export function createCamera(gameWindow) {
     if (isMiddleMouseDown) {
       const forward = new THREE.Vector3(0, 0, 1).applyAxisAngle(Y_AXIS, cameraAzimuth * DEG2RAD)
       const left = new THREE.Vector3(1, 0, 0).applyAxisAngle(Y_AXIS, cameraAzimuth * DEG2RAD)
-      cameraOrigin.add(forward.multiplyScalar(-0.01 * deltaY))
-      cameraOrigin.add(left.multiplyScalar(-0.01 * deltaX))
+      cameraOrigin.add(forward.multiplyScalar(PAN_SENSITIVITY * deltaY))
+      cameraOrigin.add(left.multiplyScalar(PAN_SENSITIVITY * deltaX))
       updateCameraPosition()
     }
 
     // Zoom of the camera
     if (isRightMouseDown) {
-      cameraRadius += deltaY * 0.02
+      cameraRadius += deltaY * ZOOM_SENSITIVITY
       cameraRadius = Math.min(MAX_CAMERA_RADIUS, Math.max(MIN_CAMERA_RADIUS, cameraRadius))
       updateCameraPosition()
     }
