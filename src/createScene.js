@@ -32,8 +32,23 @@ export function createScene() {
     renderer.setAnimationLoop(null)
   }
 
+  function onMouseDown() {
+    console.log('mousedown')
+  }
+
+  function onMouseUp() {
+    console.log('mouseup')
+  }
+  
+  function onMouseMove() {
+    console.log('mousemove')
+  }
+
   return {
     start,
-    stop
+    stop,
+    onMouseDown,
+    onMouseUp,
+    onMouseMove
   }
 }
