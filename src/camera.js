@@ -1,17 +1,15 @@
 import * as THREE from 'three'
 
 export function createCamera(gameWindow) {
+  const LEFT_MOUSE_BUTTON = 0
+  const RIGHT_MOUSE_BUTTON = 2
+  const MIDDLE_MOUSE_BUTTON = 1
   const camera = new THREE.PerspectiveCamera(
     75, 
     gameWindow.offsetWidth / gameWindow.offsetHeight, 
     0.1, 
     1000
   )
-
-  const LEFT_MOUSE_BUTTON = 0
-  const RIGHT_MOUSE_BUTTON = 0
-  const MIDDLE_MOUSE_BUTTON = 0
-
   let cameraRadius = 4
   let cameraAzimuth = 0
   let cameraElevation = 0
@@ -22,18 +20,15 @@ export function createCamera(gameWindow) {
   let prevMouseY = 0
   updateCameraPosition()
   
-  function onMouseDown() {
-    console.log('mousedown')
+  function onMouseDown(event) {
     isMouseDown = true
   }
 
-  function onMouseUp() {
-    console.log('mouseup')
+  function onMouseUp(event) {
     isMouseDown = false
   }
   
   function onMouseMove(event) {
-    console.log('mousemove')
     if (isMouseDown) {
       cameraAzimuth += -((event.clientX - prevMouseX) * 0.5)
       cameraElevation += ((event.clientY - prevMouseY) * 0.5)
