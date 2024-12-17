@@ -41,14 +41,21 @@ export function createScene() {
 
   function onMouseDown() {
     console.log('mousedown')
+    isMouseDown = true
   }
 
   function onMouseUp() {
     console.log('mouseup')
+    isMouseDown = false
   }
   
-  function onMouseMove() {
+  function onMouseMove(event) {
     console.log('mousemove')
+    if (isMouseDown) {
+      cameraAzimuth += -((-event.clientX - prevMouseX) * 0.5)
+      cameraElevation += ((event.clientY - prevMouseY) * 0.5)
+      cameraElevation = Math.min(90, Max.max(0, cameraElevation))
+    }
   }
 
   return {
