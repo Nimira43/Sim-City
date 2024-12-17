@@ -8,6 +8,10 @@ export function createCamera(gameWindow) {
   const RIGHT_MOUSE_BUTTON = 2
   const MIN_CAMERA_RADIUS = 2
   const MAX_CAMERA_RADIUS = 10
+  const ROTATION_SENSITIVITY = 0.5
+  const ZOOM_SENSITIVITY = 0.02
+  const PAN_SENSITIVITY = -0.01
+
   const Y_AXIS = new THREE.Vector3(0, 1, 0)
 
   const camera = new THREE.PerspectiveCamera(
