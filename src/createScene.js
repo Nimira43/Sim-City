@@ -54,7 +54,7 @@ export function createScene() {
     if (isMouseDown) {
       cameraAzimuth += -((-event.clientX - prevMouseX) * 0.5)
       cameraElevation += ((event.clientY - prevMouseY) * 0.5)
-      cameraElevation = Math.min(90, Max.max(0, cameraElevation))
+      cameraElevation = Math.min(90, Math.max(0, cameraElevation))
     }
   }
 
